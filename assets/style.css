@@ -1,0 +1,210 @@
+/* ==========================================================================
+   بوتیک آویژه | Avije Boutique - Style Sheet (style.css)
+   طراحی لوکس، مینیمال و متناسب با نوشتار فارسی راست‌به‌چپ (RTL)
+   ========================================================================== */
+
+:root {
+  /* پالت رنگی اصلی بوتیک آویژه */
+  --avije-primary: #a1373a;
+  --avije-primary-hover: #c24f50;
+  --avije-primary-light: #fee9e8;
+  --avije-primary-subtle: #fff0ef;
+  --avije-dark: #241918;
+  --avije-charcoal: #1b1c1c;
+  --avije-muted: #8a7170;
+  --avije-text-body: #574241;
+  --avije-bg: #fff8f7;
+  --avije-card-bg: #ffffff;
+  --avije-border: #ddc0be;
+  --avije-border-light: rgba(221, 192, 190, 0.4);
+  --avije-accent-gold: #c5a059;
+  
+  /* ترنزیشن‌ها و سایه‌ها */
+  --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  --transition-bounce: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+  --shadow-soft: 0 4px 20px -2px rgba(36, 25, 24, 0.05);
+  --shadow-luxury: 0 10px 30px -5px rgba(161, 55, 58, 0.08), 0 4px 12px -2px rgba(36, 25, 24, 0.04);
+  --shadow-elevated: 0 20px 40px -10px rgba(36, 25, 24, 0.12);
+}
+
+/* ==========================================================================
+   تنظیمات رندر فونت و نوشتار فارسی
+   ========================================================================== */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: 'Vazirmatn', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background-color: var(--avije-bg);
+  color: var(--avije-dark);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+/* اعداد و نشانه‌های فارسی هماهنگ */
+.persian-nums {
+  font-feature-settings: "ss01" 1, "ss02" 1;
+}
+
+/* ==========================================================================
+   کلاس‌های کمکی و انیمیشن‌ها (Animations & Utility Classes)
+   ========================================================================== */
+
+/* انیمیشن نرم ورود از پایین */
+@keyframes slideUpFade {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-slide-up {
+  animation: slideUpFade 0.45s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* انیمیشن ظهور آرام */
+@keyframes fadeInScale {
+  from {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.animate-fade-scale {
+  animation: fadeInScale 0.35s ease-out forwards;
+}
+
+/* جلوه درخشش ملایم */
+@keyframes shimmerEffect {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.shimmer-loading {
+  background: linear-gradient(90deg, #fff0ef 25%, #fee9e8 50%, #fff0ef 75%);
+  background-size: 200% 100%;
+  animation: shimmerEffect 1.8s infinite;
+}
+
+/* پالس محو برای بج‌های ویژه و تخفیف */
+@keyframes pulseSubtle {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.92;
+    transform: scale(1.03);
+  }
+}
+
+.pulse-badge {
+  animation: pulseSubtle 2.5s infinite ease-in-out;
+}
+
+/* ==========================================================================
+   استایل‌های اختصاصی المان‌های بوتیک (Boutique Custom Components)
+   ========================================================================== */
+
+/* افکت کارت‌های شیشه‌ای مات و ظریف */
+.glassmorphism-card {
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid var(--avije-border-light);
+}
+
+/* هاور کارت‌های محصولات */
+.product-card-hover {
+  transition: transform 0.35s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.product-card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: var(--shadow-luxury);
+}
+
+/* دکمه اختصاصی برند آویژه */
+.btn-avije-primary {
+  background-color: var(--avije-primary);
+  color: #ffffff;
+  transition: var(--transition-smooth);
+  box-shadow: 0 4px 14px 0 rgba(161, 55, 58, 0.25);
+}
+
+.btn-avije-primary:hover {
+  background-color: var(--avije-primary-hover);
+  box-shadow: 0 6px 20px 0 rgba(161, 55, 58, 0.35);
+  transform: translateY(-1px);
+}
+
+.btn-avije-primary:active {
+  transform: translateY(0);
+}
+
+/* دکمه با خط مرزی لوکس */
+.btn-avije-outline {
+  border: 1px solid var(--avije-border);
+  color: var(--avije-dark);
+  background-color: transparent;
+  transition: var(--transition-smooth);
+}
+
+.btn-avije-outline:hover {
+  border-color: var(--avije-primary);
+  background-color: var(--avije-primary-subtle);
+  color: var(--avije-primary);
+}
+
+/* برچسب‌های لوکس آویژه */
+.badge-luxury {
+  background-color: var(--avije-primary-subtle);
+  color: var(--avije-primary);
+  border: 1px solid rgba(161, 55, 58, 0.15);
+  font-weight: 700;
+  letter-spacing: -0.01em;
+}
+
+/* نسبت تصویر استاندارد مد و فشن (مدل قدی مانتو و شومیز) */
+.aspect-fashion-portrait {
+  aspect-ratio: 3 / 4;
+}
+
+/* ==========================================================================
+   تنظیمات فوکوس و دسترس‌پذیری (Accessibility)
+   ========================================================================== */
+button:focus-visible, 
+input:focus-visible, 
+select:focus-visible, 
+textarea:focus-visible, 
+a:focus-visible {
+  outline: 2px solid var(--avije-primary);
+  outline-offset: 2px;
+}
+
+/* استایل کادر انتخاب متن (Selection) */
+::selection {
+  background-color: #ffdad8;
+  color: #410006;
+}
+
+::-moz-selection {
+  background-color: #ffdad8;
+  color: #410006;
+}
